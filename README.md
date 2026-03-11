@@ -1,6 +1,6 @@
-# Search Pro - 自研搜索引擎
+# Search Pro - 免费搜索引擎
 
-多引擎聚合搜索工具，支持百度、Bing、Google、Tavily。
+**无需 API Key，安装即用！** 多引擎聚合搜索工具。
 
 [English Version](README_EN.md)
 
@@ -8,11 +8,11 @@
 
 ## ✨ 功能特性
 
-- 🔍 **多引擎聚合** - 百度 + Bing + Google + Tavily
+- 🔍 **无需配置** - 安装即用，无需 API Key
+- 🚀 **国内可访问** - 支持必应中国、搜狗、360 搜索
 - 📄 **内容提取** - 自动提取网页正文
 - 📊 **结果去重** - 智能去重 + 相关性排序
-- 💾 **搜索历史** - 历史记录 + 收藏
-- ⚙️ **可配置** - 灵活启用/禁用引擎
+- ⚙️ **可选配置** - 支持配置百度/Bing 等 API（可选）
 
 ---
 
@@ -24,65 +24,62 @@ git clone https://github.com/williamwg2025/openclaw-search-pro.git search-pro
 chmod +x search-pro/scripts/*.py
 ```
 
+**就这么简单！无需任何配置，立即使用！**
+
 ---
 
 ## 📖 使用
 
-### 基本搜索
+### 基本搜索（无需配置）
 
 ```bash
-# 使用百度（默认，中文最好）
+# 直接搜索
 python3 search-pro/scripts/multi-search.py "OpenClaw 技能"
-
-# 使用所有引擎
-python3 search-pro/scripts/multi-search.py "OpenClaw 技能" --all-engines
-
-# 指定引擎
-python3 search-pro/scripts/multi-search.py "OpenClaw 技能" --engine baidu
 
 # 限制结果数
 python3 search-pro/scripts/multi-search.py "OpenClaw 技能" --max-results 20
+
+# 指定引擎
+python3 search-pro/scripts/multi-search.py "OpenClaw 技能" --engine bing-cn
 ```
+
+### 可用引擎
+
+| 引擎 | 说明 | 需要 API |
+|------|------|----------|
+| `free` | 自动选择（默认） | ❌ 否 |
+| `bing-cn` | 必应中国 | ❌ 否 |
+| `sogou` | 搜狗搜索 | ❌ 否 |
+| `so360` | 360 搜索 | ❌ 否 |
 
 ---
 
-## ⚙️ 配置引擎
+## 🎯 特点
 
-编辑 `config/search-config.json`：
+### ✅ 无需 API Key
 
-```json
-{
-  "engines": {
-    "baidu": {
-      "enabled": true,
-      "apiKey": "YOUR_BAIDU_API_KEY",
-      "secretKey": "YOUR_BAIDU_SECRET_KEY"
-    },
-    "bing": {"enabled": false, "apiKey": ""},
-    "google": {"enabled": false, "apiKey": "", "searchEngineId": ""},
-    "tavily": {"enabled": false, "apiKey": ""}
-  }
-}
-```
+- 不注册任何账号
+- 不配置任何 Key
+- 安装后立即使用
+
+### ✅ 国内可访问
+
+- 必应中国（cn.bing.com）
+- 搜狗搜索（sogou.com）
+- 360 搜索（so.com）
+
+### ✅ 自动降级
+
+如果某个引擎无法访问，自动切换到备用引擎。
 
 ---
 
-## 🔑 获取 API Key
+## ⚙️ 可选配置（高级）
 
-### 百度 API（推荐，国内最快）
+如果想获得更稳定的搜索质量，可以配置 API Key：
 
-**步骤：**
-1. 访问：https://ai.baidu.com/tech/search
-2. 登录百度账号（没有就注册一个）
-3. 点击 "控制台" → "创建应用"
-4. 填写应用名称，选择 "搜索引擎 API"
-5. 获取 **API Key** 和 **Secret Key**
+### 配置百度 API
 
-**免费额度：**
-- 每日限额：具体额度看官方说明
-- 国内访问：速度快，稳定
-
-**配置示例：**
 ```json
 {
   "baidu": {
@@ -93,11 +90,30 @@ python3 search-pro/scripts/multi-search.py "OpenClaw 技能" --max-results 20
 }
 ```
 
-### Bing API（备选）
+**获取方式：** https://ai.baidu.com/tech/search
+
+### 配置 Bing API
+
+```json
+{
+  "bing": {
+    "enabled": true,
+    "apiKey": "你的 API Key"
+  }
+}
+```
 
 **获取方式：** https://www.microsoft.com/en-us/bing/apis/bing-web-search-api
 
-**免费额度：** 1000 次/月
+---
+
+## 📊 引擎对比
+
+| 引擎 | 中文质量 | 速度 | 需要 API | 推荐度 |
+|------|----------|------|----------|--------|
+| **免费搜索** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ❌ 否 | ⭐⭐⭐⭐⭐ |
+| 百度 API | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ 是 | ⭐⭐⭐⭐ |
+| Bing API | ⭐⭐⭐⭐ | ⭐⭐⭐ | ✅ 是 | ⭐⭐⭐ |
 
 ---
 
@@ -105,37 +121,42 @@ python3 search-pro/scripts/multi-search.py "OpenClaw 技能" --max-results 20
 
 | 脚本 | 功能 |
 |------|------|
-| `baidu_search.py` | 百度搜索 API |
-| `custom_search.py` | 多引擎搜索核心 |
-| `multi-search.py` | 多引擎搜索 CLI |
+| `free_search.py` | 免费搜索引擎（无需 API） |
+| `multi-search.py` | 命令行搜索工具 |
+| `baidu_search.py` | 百度 API（可选） |
 | `fallback_search.py` | 备用搜索引擎 |
 
 ---
 
-## 🔍 搜索策略
+## 💡 使用场景
 
-**默认策略（国内）：**
-1. 百度（首选，中文最好）
-2. Bing（备选，国际内容）
-3. Google（英文/技术内容）
-4. Tavily（AI 优化）
+### 日常搜索
+```bash
+python3 search-pro/scripts/multi-search.py "今天天气"
+```
 
-**智能路由：**
-- 中文内容 → 百度 > Bing
-- 英文内容 → Google > Bing
-- 技术文档 → Google > Tavily
-- 新闻/热点 → 百度 > Bing
+### 搜索小说
+```bash
+python3 search-pro/scripts/multi-search.py "小说 青山"
+```
+
+### 搜索技术文档
+```bash
+python3 search-pro/scripts/multi-search.py "Python 教程" --max-results 20
+```
 
 ---
 
-## 📊 引擎对比
+## ❓ 常见问题
 
-| 引擎 | 中文质量 | 英文质量 | 免费额度 | 国内访问 |
-|------|----------|----------|----------|----------|
-| 百度 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 日限额 | ✅ 快 |
-| Bing | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 1000/月 | ⚠️ 慢 |
-| Google | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 100/天 | ❌ 无法访问 |
-| Tavily | ⭐⭐⭐ | ⭐⭐⭐⭐ | 1000/月 | ⚠️ 慢 |
+### Q: 为什么搜索结果少？
+A: 免费搜索有访问限制，建议配置百度 API 获得更好体验。
+
+### Q: 搜索失败怎么办？
+A: 检查网络连接，或尝试其他关键词。
+
+### Q: 如何获得更好的搜索质量？
+A: 配置百度 API（参考上文），质量提升明显。
 
 ---
 
@@ -146,4 +167,5 @@ MIT-0
 ---
 
 **作者：** @williamwg2025  
-**版本：** 1.0.0
+**版本：** 1.0.0  
+**特点：** 无需 API Key，安装即用！
