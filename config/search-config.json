@@ -1,24 +1,30 @@
 {
   "engines": {
     "duckduckgo": {
+      "enabled": false,
+      "description": "免费，但服务器无法访问"
+    },
+    "baidu": {
       "enabled": true,
-      "description": "免费，无需 API Key"
+      "apiKey": "",
+      "secretKey": "",
+      "description": "推荐：中文搜索最好，国内访问快，免费额度"
     },
     "bing": {
       "enabled": false,
       "apiKey": "",
-      "description": "需要 Bing Search API Key"
+      "description": "备选：中文搜索好，1000 次/月免费"
     },
     "google": {
       "enabled": false,
       "apiKey": "",
       "searchEngineId": "",
-      "description": "需要 Google Custom Search API"
+      "description": "英文搜索好，100 次/天免费"
     },
     "tavily": {
       "enabled": false,
       "apiKey": "",
-      "description": "需要 Tavily API Key"
+      "description": "AI 优化搜索，1000 次/月免费"
     }
   },
   "maxResults": 10,
@@ -26,6 +32,6 @@
   "sortBy": "relevance",
   "fallback": {
     "enabled": true,
-    "order": ["duckduckgo", "bing", "google", "tavily"]
+    "order": ["baidu", "bing", "google", "tavily"]
   }
 }
