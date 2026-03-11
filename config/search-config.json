@@ -1,0 +1,31 @@
+{
+  "engines": {
+    "duckduckgo": {
+      "enabled": true,
+      "description": "免费，无需 API Key"
+    },
+    "bing": {
+      "enabled": false,
+      "apiKey": "",
+      "description": "需要 Bing Search API Key"
+    },
+    "google": {
+      "enabled": false,
+      "apiKey": "",
+      "searchEngineId": "",
+      "description": "需要 Google Custom Search API"
+    },
+    "tavily": {
+      "enabled": false,
+      "apiKey": "",
+      "description": "需要 Tavily API Key"
+    }
+  },
+  "maxResults": 10,
+  "deduplication": true,
+  "sortBy": "relevance",
+  "fallback": {
+    "enabled": true,
+    "order": ["duckduckgo", "bing", "google", "tavily"]
+  }
+}
