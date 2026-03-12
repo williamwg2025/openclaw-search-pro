@@ -1,8 +1,8 @@
 ---
 name: search-pro
 displayName: Search Pro
-version: 1.0.1
-description: 搜索增强工具，支持多引擎聚合搜索、内容提取、结果去重。需要联网访问搜索引擎 API。
+version: 1.0.2
+description: 搜索增强工具，支持多引擎聚合搜索、内容提取、结果去重。需要联网访问搜索引擎 API。所有文件存储在 skills/search-pro/ 目录。
 license: MIT-0
 acceptLicenseTerms: true
 tags: search, web, research, productivity, network
@@ -52,13 +52,14 @@ python3 search-pro/scripts/extract.py --url https://example.com
 
 ## 🛠️ 脚本
 
-| 脚本 | 功能 | 网络访问 |
-|------|------|---------|
-| `multi-search.py` | 多引擎搜索 | ✅ 是 |
-| `free_search.py` | 免费搜索引擎 | ✅ 是 |
-| `baidu_search.py` | 百度搜索 | ✅ 是 |
-| `extract.py` | 内容提取 | ✅ 是 |
-| `history.py` | 搜索历史 | ❌ 否 |
+| 脚本 | 功能 | 网络访问 | 文件写入 |
+|------|------|---------|---------|
+| `multi-search.py` | 多引擎搜索 | ✅ 是 | ❌ 否 |
+| `free_search.py` | 免费搜索引擎 | ✅ 是 | ❌ 否 |
+| `baidu_search.py` | 百度搜索 | ✅ 是 | ❌ 否 |
+| `extract.py` | 内容提取 | ✅ 是 | ❌ 否 |
+
+**注意：** 搜索历史功能需要手动实现，当前版本不自动保存历史
 
 ---
 
@@ -76,21 +77,45 @@ python3 search-pro/scripts/extract.py --url https://example.com
 - 不运行服务器
 
 ### 文件访问
-- **读取：** 仅限 `~/.openclaw/workspace/search-pro/` 目录
-- **写入：** 搜索历史保存到 `~/.openclaw/workspace/search-pro/history/`
-- **extract.py 限制：** 仅提取网页内容，不读取本地文件
+**路径说明：** 所有文件存储在 `~/.openclaw/workspace/skills/search-pro/`
+
+- **读取：**
+  - `config/search-config.json` - 搜索配置（可选）
+  - `config/api-keys.json` - API 密钥（可选）
+- **写入：**
+  - 当前版本不自动写入文件
+  - 搜索结果输出到命令行
+- **extract.py 限制：**
+  - ✅ 仅提取网页内容
+  - ✅ 不读取本地文件
+  - ✅ 不访问内网地址（完整检查 HTTP 和 HTTPS）
 
 ### 数据安全
 - **不上传：** 不上传用户配置文件或敏感数据
-- **不存储：** 搜索查询不存储到外部服务器
-- **本地历史：** 搜索历史仅保存在本地
+- **搜索查询：** 会发送到配置的搜索引擎（百度、必应等），这是搜索功能的必要条件
+- **API 密钥：** 存储在本地配置文件，不发送到除 API 提供商外的第三方
 
 ### API 密钥（可选）
-如使用 Tavily API：
+**免费搜索：** 无需 API Key，直接使用
+
+**可选 API 配置：**
 ```bash
-# 配置 API Key（可选）
+# 方法 1: 环境变量
 export TAVILY_API_KEY="your-key"
+
+# 方法 2: 配置文件（推荐）
+# 编辑 config/search-config.json
+{
+  "tavily": {
+    "api_key": "your-key"
+  }
+}
 ```
+
+**安全建议：**
+- 配置文件权限：`chmod 600 config/search-config.json`
+- 不要将 API Key 提交到 Git
+- 使用环境变量更安全（不写入文件）
 
 ---
 

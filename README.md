@@ -186,9 +186,11 @@ MIT-0
 - 不运行服务器
 
 ### 文件访问
-- **读取：** 搜索历史 `~/.openclaw/workspace/search-pro/history/`
-- **写入：** 搜索结果缓存（可选）
-- **extract.py：** 仅提取网页内容，**不读取本地文件**
+**路径：** `~/.openclaw/workspace/skills/search-pro/`
+
+- **读取：** config/search-config.json（可选）
+- **写入：** 当前版本不自动写入文件
+- **extract.py：** 仅提取网页内容，不读取本地文件
 
 ### 数据安全
 - **不上传：** 不上传用户配置文件
