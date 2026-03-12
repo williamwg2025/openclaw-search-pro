@@ -48,7 +48,7 @@
 编辑配置文件：
 
 ```bash
-vi /root/.openclaw/workspace/skills/search-pro/config/search-config.json
+vi ~/.openclaw/workspace/skills/search-pro/config/search-config.json
 ```
 
 修改为：
@@ -72,7 +72,7 @@ vi /root/.openclaw/workspace/skills/search-pro/config/search-config.json
 ## 🧪 测试
 
 ```bash
-cd /root/.openclaw/workspace/skills/search-pro
+cd ~/.openclaw/workspace/skills/search-pro
 python3 scripts/multi-search.py "测试搜索" --engine baidu
 ```
 
