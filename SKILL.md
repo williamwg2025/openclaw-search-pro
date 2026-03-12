@@ -80,15 +80,16 @@ python3 search-pro/scripts/extract.py --url https://example.com
 **路径说明：** 所有文件存储在 `~/.openclaw/workspace/skills/search-pro/`
 
 - **读取：**
-  - `config/search-config.json` - 搜索配置（可选）
-  - `config/api-keys.json` - API 密钥（可选）
+  - `config/search-config.json` - 搜索配置和 API 密钥（可选）
 - **写入：**
   - 当前版本不自动写入文件
   - 搜索结果输出到命令行
-- **extract.py 限制：**
-  - ✅ 仅提取网页内容
-  - ✅ 不读取本地文件
-  - ✅ 不访问内网地址（完整检查 HTTP 和 HTTPS）
+- **extract.py 安全检查：**
+  - ✅ 仅支持 http:// 和 https:// 协议
+  - ✅ 检查 IP 地址（10/8, 172.16/12, 192.168/16, 127/8）
+  - ✅ DNS 解析后检查（防止域名指向内网）
+  - ✅ 检查内网域名模式（.local, .internal, .intranet, .lan）
+  - ✅ 阻止常见内网主机名（localhost, internal 等）
 
 ### 数据安全
 - **不上传：** 不上传用户配置文件或敏感数据
@@ -100,10 +101,10 @@ python3 search-pro/scripts/extract.py --url https://example.com
 
 **可选 API 配置：**
 ```bash
-# 方法 1: 环境变量
+# 方法 1: 环境变量（推荐，更安全）
 export TAVILY_API_KEY="your-key"
 
-# 方法 2: 配置文件（推荐）
+# 方法 2: 配置文件
 # 编辑 config/search-config.json
 {
   "tavily": {
@@ -112,9 +113,11 @@ export TAVILY_API_KEY="your-key"
 }
 ```
 
+**注意：** API Key 存储在 `config/search-config.json`，没有单独的 api-keys.json 文件
+
 **安全建议：**
 - 配置文件权限：`chmod 600 config/search-config.json`
-- 不要将 API Key 提交到 Git
+- 不要将 API Key 提交到 Git（添加到 .gitignore）
 - 使用环境变量更安全（不写入文件）
 
 ---

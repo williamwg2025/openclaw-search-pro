@@ -188,9 +188,13 @@ MIT-0
 ### 文件访问
 **路径：** `~/.openclaw/workspace/skills/search-pro/`
 
-- **读取：** config/search-config.json（可选）
+- **读取：** config/search-config.json（搜索配置和 API 密钥）
 - **写入：** 当前版本不自动写入文件
-- **extract.py：** 仅提取网页内容，不读取本地文件
+- **extract.py 安全检查：**
+  - ✅ 协议检查（仅 http/https）
+  - ✅ IP 地址检查（私有 IP 范围）
+  - ✅ DNS 解析后检查（防止 SSRF）
+  - ✅ 内网域名检查（.local, .internal 等）
 
 ### 数据安全
 - **不上传：** 不上传用户配置文件

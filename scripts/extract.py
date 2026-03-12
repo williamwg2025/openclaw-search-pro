@@ -88,9 +88,13 @@ def validate_url(url: str) -> tuple:
         # 不是 IP 地址，是域名，需要解析检查
         pass
     
-    # 6. 解析域名并检查
-    if is_private_ip_hostname(hostname):
+    # 6. 解析域名并检查（实际执行 DNS 查询）
+    if resolve_and_check_hostname(hostname):
         return False, f"域名解析到内网地址：{hostname}"
+    
+    # 7. 检查内网域名模式
+    if is_private_ip_hostname(hostname):
+        return False, f"检测到内网域名：{hostname}"
     
     return True, ""
 
