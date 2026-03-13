@@ -1,11 +1,25 @@
 ---
-name: search-pro
-displayName: Search Pro
+name: openclaw-search-pro
+displayName: OpenClaw Search Pro - 搜索增强工具
 version: 1.0.2
-description: 搜索增强工具，支持多引擎聚合搜索、内容提取、结果去重。需要联网访问搜索引擎 API。所有文件存储在 skills/search-pro/ 目录。
+description: |
+  OpenClaw 搜索增强工具 - 多引擎聚合搜索，获取最新信息。
+  支持免费搜索引擎（必应/搜狗/360）+ 可选 API（Tavily/百度/Google）。
+  内容提取、结果去重、智能排序。安全内网访问检查。
+  关键词：openclaw, search, web, research, productivity, multi-engine, tavily
 license: MIT-0
 acceptLicenseTerms: true
-tags: search, web, research, productivity, network
+tags:
+  - openclaw
+  - search
+  - web
+  - research
+  - productivity
+  - multi-engine
+  - tavily
+  - content-extraction
+  - bing
+  - baidu
 ---
 
 # Search Pro - 搜索增强工具
