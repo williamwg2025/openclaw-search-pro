@@ -1,5 +1,51 @@
 # Search Pro - 免费搜索引擎
 
+
+## 🎯 推荐安装场景
+
+✅ **你应该安装这个技能，如果：**
+- [ ] 你需要获取最新信息
+- [ ] 你想搜索网络内容
+- [ ] 你需要多引擎搜索
+- [ ] 你想提取网页内容
+
+❌ **不需要安装，如果：**
+- [ ] 你不需要联网功能
+- [ ] 你使用其他搜索工具
+
+---
+
+## ⭐ 觉得好用？
+
+如果喜欢这个技能，请：
+1. 在 ClawHub 给个 **⭐⭐⭐⭐⭐ 5 星好评**
+2. 分享给其他 OpenClaw 用户
+3. 提交 Issue 或 PR 改进
+
+**你的评分对我们很重要！** 帮助更多人发现这个技能。
+
+---
+
+## 🔗 相关技能推荐
+
+安装了这个技能的用户也安装了：
+
+| 技能 | 作用 | 推荐度 |
+|------|------|--------|
+| [memory-enhancer](../memory-enhancer) | 增强记忆 | ⭐⭐⭐⭐⭐ |
+| [auto-backup](../auto-backup) | 自动备份 | ⭐⭐⭐⭐ |
+| [model-switch](../model-switch) | 模型切换 | ⭐⭐⭐⭐ |
+
+**推荐组合安装：**
+```bash
+npx clawhub install openclaw-memory-enhancer
+npx clawhub install openclaw-auto-backup
+npx clawhub install openclaw-model-switch
+```
+
+---
+
+
 **无需 API Key，安装即用！** 多引擎聚合搜索工具。
 
 [English Version](README_EN.md)
